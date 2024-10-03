@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private int decimal = 0;
     private String trigonometria = "";
     private String calculsActuals = "";
+    private boolean delete_C = false;
 
 
     //Actulitzar els textos
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         txt_finalNumber.setText(String.valueOf(trigonometria + numActual));
     }
     public void previousNumber(String sign){
-        double numAnterior = 0;
+        double numAnterior;
         if(Objects.equals(trigonometria, "sin(")){
             numAnterior = Math.sin(numActual);
             trigonometria = "";
@@ -54,8 +55,14 @@ public class MainActivity extends AppCompatActivity {
             numAnterior = numActual;
         }
         numActual = 0;
+        if(delete_C){
+            calculsActuals = "";
+            delete_C = false;
+        }
+        else{
+            calculsActuals = String.valueOf(calculsActuals+ numAnterior +sign);
+        }
         decimal = 0;
-        calculsActuals = String.valueOf(calculsActuals+ numAnterior +sign);
         txt_previousNumber.setText(calculsActuals);
         actualNumber();
     }
@@ -90,8 +97,7 @@ public class MainActivity extends AppCompatActivity {
         actualNumber();
     }
     public void click_C(View v){
-        numActual = 0;
-        calculsActuals = "";
+        delete_C = true;
         previousNumber("");
     }
     public void click_comma(View v){
@@ -126,13 +132,13 @@ public class MainActivity extends AppCompatActivity {
             String token = matcher.group();
             if (token.matches("[\\d.]+")) {
                 if (i == 0)
-                    num1 = Double.valueOf(token);
+                    num1 = Double.parseDouble(token);
                 else
-                    num2 = Double.valueOf(token);
+                    num2 = Double.parseDouble(token);
             } else if (token.matches("[\\-+x/]")) {
                 operacio = token;
             }
-            if(num1 != 0 && num2 != 0 && operacio.matches("[\\-+x/]")) {
+            if(num1 != 0 && num2 != 0 && i % 2 == 0) { // el num2 sempre s'actualitzarà quan i sigui parell
                 if (Objects.equals(operacio, "+")) {
                     num1 = num1 + num2;
                 } else if (Objects.equals(operacio, "-")) {
