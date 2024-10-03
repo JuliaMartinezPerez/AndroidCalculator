@@ -53,7 +53,7 @@
 
         <Button
             android:id="@+id/btn_C"
-            android:layout_width="172dp"
+            android:layout_width="78dp"
             android:layout_height="55dp"
             android:onClick="click_C"
             android:text="C"
@@ -64,7 +64,7 @@
             android:id="@+id/btn_Del"
             android:layout_width="78dp"
             android:layout_height="55dp"
-            android:layout_marginStart="17dp"
+            android:layout_marginStart="16dp"
             android:onClick="click_del"
             android:text="Del"
             app:layout_constraintStart_toEndOf="@+id/btn_C"
@@ -74,7 +74,7 @@
             android:id="@+id/btn_percentage"
             android:layout_width="78dp"
             android:layout_height="55dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="17dp"
             android:onClick="click_percentage"
             android:text="%"
             app:layout_constraintStart_toEndOf="@+id/btn_Del"
@@ -96,6 +96,7 @@
             android:layout_width="78dp"
             android:layout_height="55dp"
             android:layout_marginTop="5dp"
+            android:onClick="click_sin"
             android:text="sin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_C" />
@@ -106,6 +107,7 @@
             android:layout_height="55dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
+            android:onClick="click_cos"
             android:text="cos"
             app:layout_constraintStart_toEndOf="@+id/btn_sin"
             app:layout_constraintTop_toBottomOf="@+id/btn_Del" />
@@ -116,6 +118,7 @@
             android:layout_height="55dp"
             android:layout_marginStart="17dp"
             android:layout_marginTop="5dp"
+            android:onClick="click_tan"
             android:text="tan"
             app:layout_constraintStart_toEndOf="@+id/btn_cos"
             app:layout_constraintTop_toBottomOf="@+id/btn_Del" />

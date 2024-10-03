@@ -27,22 +27,35 @@ public class MainActivity extends AppCompatActivity {
 
     TextView txt_finalNumber, txt_previousNumber;
 
-    private double numAnterior = 0;
     private double numActual = 0;
     private double numFinal = 0;
     private int decimal = 0;
+    private String trigonometria = "";
     private String calculsActuals = "";
 
 
     //Actulitzar els textos
     public void actualNumber(){
-        txt_finalNumber.setText(String.valueOf(numActual));
+        txt_finalNumber.setText(String.valueOf(trigonometria + numActual));
     }
     public void previousNumber(String sign){
-        numAnterior = numActual;
+        double numAnterior = 0;
+        if(Objects.equals(trigonometria, "sin(")){
+            numAnterior = Math.sin(numActual);
+            trigonometria = "";
+        } else if (Objects.equals(trigonometria, "cos(")) {
+            numAnterior = Math.cos(numActual);
+            trigonometria = "";
+        } else if (Objects.equals(trigonometria, "tan(")) {
+            numAnterior = Math.tan(numActual);
+            trigonometria = "";
+        }
+        else {
+            numAnterior = numActual;
+        }
         numActual = 0;
         decimal = 0;
-        calculsActuals = String.valueOf(calculsActuals+numAnterior+sign);
+        calculsActuals = String.valueOf(calculsActuals+ numAnterior +sign);
         txt_previousNumber.setText(calculsActuals);
         actualNumber();
     }
@@ -88,6 +101,18 @@ public class MainActivity extends AppCompatActivity {
         numActual = numActual/100;
         actualNumber();
     }
+    public void click_sin(View v){
+        trigonometria = "sin(";
+        txt_finalNumber.setText(trigonometria);
+    }
+    public void click_cos(View v){
+        trigonometria = "cos(";
+        txt_finalNumber.setText(trigonometria);
+    }
+    public void click_tan(View v){
+        trigonometria = "tan(";
+        txt_finalNumber.setText(trigonometria);
+    }
 
     //Operacions
     public void calcular() {
@@ -119,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
         numFinal = num1;
         numActual = 0;
     }
